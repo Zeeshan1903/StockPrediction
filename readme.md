@@ -4,6 +4,10 @@
 **Zeeshan Mohammed Rangrej**  
 **Roll No. : 112301040**
 
+## Code Dir 
+Main code in /public dir which contains the index.html and script.js
+
+## backend.js contains the whole backend code 
 ## Project Overview
 
 The Stock Rate Prediction project aims to analyze historical stock data and make trading decisions based on candlestick patterns. This application uses various technical patterns, such as Doji, Shooting Star, and Engulfing patterns, to predict whether to buy or sell a given stock on specific days.
