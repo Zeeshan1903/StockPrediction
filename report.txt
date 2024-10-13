@@ -1,0 +1,41 @@
+Stock Trading Algorithm Overview
+
+Objective: The goal of the stock trading algorithm is to analyze historical stock price data, identify significant price patterns, and generate trading signals that can guide buy and sell decisions.
+
+Hypothesis : 
+I aim to use common candlestick patterns to help decide whether to buy or sell a stock on a specific day. I have written code to find these patterns in historical stock price data. If a pattern appears, I will analyze what it means—whether it suggests buying or selling. Additionally, I will simulate trades based on these signals to see if this approach can make a profit. Overall, I want to see if using these patterns can help improve trading decisions.
+
+Approach:
+
+    The algorithm fetches stock data from a backend server using a POST request. This data typically includes daily closing prices of a specified stock symbol.
+    Once the data is retrieved, the algorithm processes it to detect various candlestick patterns, which are technical indicators used in trading to predict future price movements.
+    Based on the identified patterns, the algorithm simulates trading decisions, logging buy and sell signals along with potential profits or losses.
+    Finally, the results are visualized using charts to provide a clear representation of stock price trends and trading outcomes.
+
+Tools and Technologies Used
+
+    JavaScript: To implement the logic of the program and also to make the backend to render this on the website.
+
+    Fetch API: Here I am using "yahoo-finance" api from wherer I will get data of a particular stock in a given time period
+
+    Chart.js: A popular JavaScript library for creating dynamic and interactive charts. It is used in this algorithm to visualize the stock price movements and trading signals over time.
+
+    HTML/CSS: Standard technologies for structuring and styling the web application interface, enabling the display of results, charts, and user interactions.
+
+    Asynchronous Programming: The use of async/await to handle asynchronous operations, allowing the application to fetch data without blocking the main execution thread.
+
+Candlestick Patterns Implemented
+
+The algorithm detects several key candlestick patterns that are commonly used in technical analysis:
+
+    1)Shooting Star: A bearish reversal pattern that occurs after an uptrend, signaling potential price declines.
+    2)Hammer: A bullish reversal pattern that occurs after a downtrend, indicating potential price increases.
+    3)Bullish Engulfing: A pattern where a smaller bearish candle is followed by a larger bullish candle, suggesting strong buying pressure.
+    4)Bearish Engulfing: A pattern where a smaller bullish candle is followed by a larger bearish candle, indicating strong selling pressure.
+    5)Doji: A pattern that signifies indecision in the market, where the opening and closing prices are very close, suggesting a potential reversal.
+    6)Morning Star: A bullish reversal pattern that indicates a potential upward trend after a downtrend, formed by three candles.
+    7)Evening Star: A bearish reversal pattern indicating a potential downward trend after an uptrend, also formed by three candles.
+
+Conclusion
+
+The stock trading algorithm effectively combines data retrieval, candlestick pattern analysis, and data visualization to assist in making informed trading decisions. By leveraging modern web technologies and libraries, it provides a comprehensive tool for analyzing stock price movements and simulating trading strategies. This approach not only enhances the understanding of market trends but also aids traders in optimizing their trading activities.
