@@ -1,5 +1,7 @@
 // public/script.js
 console.log("HI");
+
+//Here i will fetfch and POST req asking for the data from the backend part 
 async function fetchStockData(symbol) {
     const response = await fetch('/api/stock-data', {
         method: 'POST',
@@ -10,7 +12,14 @@ async function fetchStockData(symbol) {
     });
     return await response.json();
 }
+
+//This is the stcok for whcih I am fetching the result 
 console.log(fetchStockData('AAPL'));
+
+
+//These are some patterns which I am using right now
+
+//Index means on the day for which we are chekcng 
 function isShootingStar(prices, index) {
     if (index < 2) return false;
     const body = prices[index - 1];
@@ -59,31 +68,33 @@ function simulateTrading(prices) {
     let lastBuyPrice = 0;
 
     for (let i = 1; i < prices.length; i++) {
+
+        //Here i will be checking for all the patterns whether they are satisfying proper pattern or not
         if (isShootingStar(prices, i)) {
             if (lastBuyPrice > 0) {
                 const sellPrice = prices[i - 1];
                 const profit = sellPrice - lastBuyPrice;
                 signals.push('Sell');
-                transactions.push(`Sell at ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
+                transactions.push(`Sell : ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
                 lastBuyPrice = 0;
             }
         } 
         else if (isHammer(prices, i)) {
             lastBuyPrice = prices[i - 1];
             signals.push('Buy');
-            transactions.push(`Buy at ${lastBuyPrice.toFixed(2)} on day ${i}`);
+            transactions.push(`Buy : ${lastBuyPrice.toFixed(2)} on day ${i}`);
         } 
         else if (isBullishEngulfing(prices, i)) {
             lastBuyPrice = prices[i - 1]; // Buy on bullish engulfing pattern
             signals.push('Buy');
-            transactions.push(`Buy at ${lastBuyPrice.toFixed(2)} on day ${i}`);
+            transactions.push(`Buy: ${lastBuyPrice.toFixed(2)} on day :${i}`);
         } 
         else if (isBearishEngulfing(prices, i)) {
             if (lastBuyPrice > 0) {
                 const sellPrice = prices[i - 1];
                 const profit = sellPrice - lastBuyPrice;
                 signals.push('Sell');
-                transactions.push(`Sell at ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
+                transactions.push(`Sell : ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
                 lastBuyPrice = 0; // Reset after selling
             }
         } 
@@ -93,14 +104,14 @@ function simulateTrading(prices) {
         else if (isMorningStar(prices, i)) {
             lastBuyPrice = prices[i - 1]; // Buy on morning star pattern
             signals.push('Buy');
-            transactions.push(`Buy at ${lastBuyPrice.toFixed(2)} on day ${i}`);
+            transactions.push(`Buy : ${lastBuyPrice.toFixed(2)} on day ${i}`);
         } 
         else if (isEveningStar(prices, i)) {
             if (lastBuyPrice > 0) {
                 const sellPrice = prices[i - 1];
                 const profit = sellPrice - lastBuyPrice;
                 signals.push('Sell');
-                transactions.push(`Sell at ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
+                transactions.push(`Sell : ${sellPrice.toFixed(2)} on day ${i} (Profit: ${profit.toFixed(2)})`);
                 lastBuyPrice = 0; // Reset after selling
             }
         } 
@@ -129,6 +140,7 @@ async function loadData() {
     });
 
     // Chart.js Visualization
+    //Tjhis is a lib avaibnle in js using which u can create Chart 
     const ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
         type: 'line',
